@@ -67,5 +67,5 @@ if __name__ == "__main__":
     model.to('cuda')
 
     image_path = 'test_img.png'
-    predicted_class = inference(model, image_path, class_names)
+    predicted_class = inference(model, image_path)
     print(f"Predicted class: {predicted_class}")
