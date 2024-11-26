@@ -1,0 +1,17 @@
+FROM python:3.11
+WORKDIR /
+
+#RUN apt-get update && apt-get install ffmpeg libsm6 libxext6 -y
+
+COPY requirements.txt /requirements.txt
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
+
+COPY deploy/api.py /api.py
+COPY model.py /model.py
+COPY best_model_checkpoint.pth /best_model_checkpoint.pth
+
+EXPOSE 8000
+
+CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000"]
+
+

@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  fastapi:
+    build:
+      context: .
+      dockerfile: Dockerfile-api
+    container_name: fastapi-flip
+    ports:
+      - "8000:8000"
+    networks:
+      - app-network
+    volumes:
+      - shared_images:/imgs
+    environment:
+      - ENV_TYPE=docker
+
+  streamlit:
+    build:
+      context: .
+      dockerfile: Dockerfile-app
+    container_name: streamlit-flip
+    ports:
+      - "8501:8501"
+    volumes:
+      - shared_images:/imgs
+    depends_on:
+      - fastapi
+    networks:
+      - app-network
+    environment:
+      - UPLOAD_URL=http://fastapi:8000/upload
+      - PREDICT_URL=http://fastapi:8000/predict/
+      - ENV_TYPE=docker
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  shared_images:
