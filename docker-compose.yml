@@ -31,7 +31,6 @@ services:
     environment:
       - UPLOAD_URL=http://fastapi:8000/upload
       - PREDICT_URL=http://fastapi:8000/predict/
-      - ENV_TYPE=docker
 
 networks:
   app-network:

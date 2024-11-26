@@ -9,9 +9,6 @@ PREDICT_URL = os.getenv('PREDICT_URL', "http://localhost:8000/predict/")
 # Directory for images
 IMAGES_DIR = os.path.join(os.getcwd(), 'imgs')
 
-# Determine the environment (e.g., via an environment variable)
-environment = os.getenv('ENV_TYPE', 'local')
-
 st.session_state['selected_image'] = None
 
 # Fetch available images from the directory
@@ -57,14 +54,9 @@ if uploaded_file is not None:
 # Main section: Show selected image
 st.subheader("Selected image")
 if st.session_state['selected_image']:
-    if environment == 'docker':
         st.image(os.path.join(IMAGES_DIR, st.session_state['selected_image']),
                     caption=f"Image name: {st.session_state['selected_image']}",
                     use_container_width=True)
-    else:
-        st.image(os.path.join(IMAGES_DIR, st.session_state['selected_image']),
-                    caption=f"Image name: {st.session_state['selected_image']}",
-                    use_column_width=True)
 
 # Prediction section
 if st.button("Predict"):
