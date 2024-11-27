@@ -11,5 +11,8 @@ Run the app via Docker
 
 Run the app via Airflow
 - `airflow scheduler --daemon --log-file services/airflow/logs/scheduler.log`
--  `airflow triggerer --daemon --log-file services/airflow/logs/triggerer.log`
--  `airflow webserver --daemon --log-file services/airflow/logs/webserver.log`
+- `airflow triggerer --daemon --log-file services/airflow/logs/triggerer.log`
+- `airflow webserver --daemon --log-file services/airflow/logs/webserver.log`
+
+## References
+[Notebook](https://www.kaggle.com/code/utkuefeakdoan/cifar-10-basic-cnn-model/notebook)
